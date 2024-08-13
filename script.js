@@ -47,6 +47,7 @@ fetch('https://restcountries.com/v3.1/all')
     });
 
 filter.addEventListener('change', (e)=>{
+    console.log(e.target.value)
     fetch(`https://restcountries.com/v3.1/region/${e.target.value}`)
     .then((res)=> res.json())
     .then((data)=>{
@@ -80,14 +81,17 @@ searchContainer.addEventListener('input', (e)=>{
 
 function renderCountryOptions(countries) {
     const selectElement = document.getElementById('countrySelect');
+    console.log(selectElement);
     
     countries.sort((a, b) => a.name.common.localeCompare(b.name.common));
 
     countries.forEach((country) => {
         const option = document.createElement('option');
-        option.value = country.name.common.toLowerCase(); 
-        option.textContent = country.name.common;
+        option.value = country.region.toLowerCase(); 
+        option.textContent = country.region;
         selectElement.appendChild(option);
+
+        console.log(selectElement);
     });
 }
 
